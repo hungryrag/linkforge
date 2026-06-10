@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import healthRoutes from "./routes/health.routes.js";
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
+app.use("/health", healthRoutes);
 
 app.get("/health", (req, res) => {
   res.status(200).json({
